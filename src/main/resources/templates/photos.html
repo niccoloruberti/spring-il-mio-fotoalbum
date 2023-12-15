@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link th:replace="fragments::bootstrap"/>
+</head>
+<body>
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-8 d-flex flex-column align-items-center">
+                <h1 class="w-100 text-center mt-5">Le tue pizze:</h1>
+                <ul class="w-100 text-center">
+                    <li th:each="photo : ${photos}" class="list-unstyled">
+                        ciao
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
