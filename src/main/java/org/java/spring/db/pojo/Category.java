@@ -3,10 +3,13 @@ package org.java.spring.db.pojo;
 
 
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -18,6 +21,9 @@ public class Category {
     
     @NotBlank(message = "Il nome non può essere vuoto")
     private String name;
+    
+    @ManyToMany(mappedBy = "categories")
+    private List<Photo> photos;
     
     public Category() { }
     public Category (String name) {
