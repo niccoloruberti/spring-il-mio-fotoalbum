@@ -16,6 +16,11 @@
                     	class="list-unstyled">
                         <a class="text-decoration-none text-dark" th:href="@{/photos/{id} (id=${photo.id})}">[[*{name}]]</a>
                         <a class="btn btn-warning" th:href="@{/photos/edit/{id} (id=${photo.id})}">Modifica</a>
+                        <form
+                        	method="POST"
+                        	th:action="@{/photos/delete/{id} (id=${photo.id})}">
+							<button type="submit" class="btn btn-danger">Elimina</button>
+						</form>
                     </li>
                 </ul>
                 <a href="/photos/create" class="btn btn-success">Aggiungi foto</a>
