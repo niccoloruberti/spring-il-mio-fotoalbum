@@ -15,6 +15,7 @@
                     	th:object="${photo}"
                     	class="list-unstyled">
                         <a class="text-decoration-none text-dark" th:href="@{/photos/{id} (id=${photo.id})}">[[*{name}]]</a>
+                        <a class="btn btn-warning" th:href="@{/photos/edit/{id} (id=${photo.id})}">Modifica</a>
                     </li>
                 </ul>
                 <a href="/photos/create" class="btn btn-success">Aggiungi foto</a>
