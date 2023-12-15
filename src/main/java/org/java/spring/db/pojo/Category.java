@@ -25,7 +25,7 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private List<Photo> photos;
     
-    public Category() { }
+	public Category() { }
     public Category (String name) {
         setName(name);
     }
@@ -42,6 +42,13 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
+    
+    public List<Photo> getPhotos() {
+		return photos;
+	}
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
     
     @Override
     public String toString() {

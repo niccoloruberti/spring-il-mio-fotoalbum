@@ -8,15 +8,16 @@
 <body>
     <div class="container">
         <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-8 d-flex flex-column align-items-center">
-                <h1 class="w-100 text-center mt-5">Le tue pizze:</h1>
+            <div class="col-8 d-flex flex-column align-items-center justify-content-center">
+                <h1 class="w-100 text-center mt-5">Le tue foto: </h1>
                 <ul class="w-100 text-center">
                     <li th:each="photo : ${photos}"
                     	th:object="${photo}"
                     	class="list-unstyled">
-                        [[*{name}]]
+                        <a class="text-decoration-none text-dark" th:href="@{/photos/{id} (id=${photo.id})}">[[*{name}]]</a>
                     </li>
                 </ul>
+                <a href="/photos/create" class="btn btn-success">Aggiungi foto</a>
             </div>
         </div>
     </div>

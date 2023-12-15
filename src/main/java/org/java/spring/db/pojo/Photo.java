@@ -3,6 +3,8 @@ package org.java.spring.db.pojo;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,12 +20,13 @@ public class Photo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotEmpty
+	@NotEmpty(message = "Devi inserire un nome")
 	private String name;
 	
 	@Column(columnDefinition = "TEXT")
 	private String description;
 	
+	@NotEmpty(message = "Devi inserire un url")
 	@Column(columnDefinition = "TEXT")
 	private String url;
 	
