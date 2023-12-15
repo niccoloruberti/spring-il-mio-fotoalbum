@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:replace="fragments::bootstrap" />
+</head>
+<body>
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-8 offset-2 d-flex justify-content-center">
+				<div th:object="${photo}" class="card w-100" style="width: 18rem;">
+				  <img th:src="*{url}" class="card-img-top">
+				  <div class="card-body">
+				    <h5 class="card-title">[[*{name}]]</h5>
+				    <p class="card-text">[[*{description}]]</p>
+				    <h6>Categorie:</h6>
+				    <ul>
+						<li th:each="category : ${categories}">
+							[[${category.name}]]
+						</li>
+					</ul>
+				    <a href="#" class="btn btn-primary">Go somewhere</a>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

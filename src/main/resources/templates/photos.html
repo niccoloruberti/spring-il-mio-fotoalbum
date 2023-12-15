@@ -11,8 +11,10 @@
             <div class="col-8 d-flex flex-column align-items-center">
                 <h1 class="w-100 text-center mt-5">Le tue pizze:</h1>
                 <ul class="w-100 text-center">
-                    <li th:each="photo : ${photos}" class="list-unstyled">
-                        ciao
+                    <li th:each="photo : ${photos}"
+                    	th:object="${photo}"
+                    	class="list-unstyled">
+                        [[*{name}]]
                     </li>
                 </ul>
             </div>
