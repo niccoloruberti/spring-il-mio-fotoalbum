@@ -99,10 +99,14 @@ public class PhotoController {
 		
         if (bindingResult.hasErrors()) {
 
-            System.out.println(bindingResult);
+			System.out.println(bindingResult);
+			
+			List<Category> categories = categoryService.findAll();
 
-            model.addAttribute("photo", photo);
-            return "photo-form";
+			model.addAttribute("photo", photo);
+			model.addAttribute("categories", categories);
+			
+			return "photo-form";
         }
 
         photoService.save(photo);

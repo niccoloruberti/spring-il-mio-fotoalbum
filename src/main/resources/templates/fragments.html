@@ -16,5 +16,13 @@
 		   <li th:each="err : ${#fields.errors(field)}" th:text="${err}"></li>
 		</ul>
 	</div>
+	
+	<!-- Header -->
+    <nav th:fragment="header"
+    class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/}">
+            Foto Album
+        </a>
+    </nav>
 </body>
 </html>
