@@ -10,14 +10,16 @@
 		<div class="row">
 			<div class="col-8 offset-2">
 				<form class="mt-5"
-					method="POST">
+					method="POST"
+					th:object="${photo}">
 				  <div class="mb-3">
 				    <label for="name" class="form-label">Titolo</label>
 				    <input type="text" class="form-control" name="name" id="name" th:field="${photo.name}">
-				  </div>
+				    <div th:replace="fragments :: errorConvalidation('name')"></div>
 				  <div class="mb-3">
 				    <label for="description" class="form-label">Descrizione</label>
 				    <input type="text" class="form-control" name="description" id="description" th:field="${photo.description}">
+				    <div th:replace="fragments :: errorConvalidation('description')"></div>
 				  </div>
 				  <div class="mb-3">
 				    <label for="url" class="form-label">Url</label>
@@ -31,6 +33,7 @@
 	                    </select>
 	                </div>
 				  <h6>Categorie:</h6>
+				  <div th:replace="fragments :: errorConvalidation('categories')"></div>
 				  <div class="mb-3 form-check"
 				  		th:each="category : ${categories}">
 				    <input type="checkbox" class="form-check-input" th:id="${category.id}" th:value="${category.id}" th:field="${photo.categories}">

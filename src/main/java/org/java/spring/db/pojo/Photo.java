@@ -3,7 +3,7 @@ package org.java.spring.db.pojo;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.hibernate.validator.constraints.Length;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Photo {
@@ -20,10 +21,13 @@ public class Photo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	
 	@NotEmpty(message = "Devi inserire un nome")
+	@Length(min = 3, max = 30, message = "Il nome deve essere lungo almeno 3 caratteri e non più lungo di 30")
 	private String name;
 	
 	@Column(columnDefinition = "TEXT")
+	@Length(max = 400, message = "La descrizione può essere lunga al massimo 200 caratteri")
 	private String description;
 	
 	@NotEmpty(message = "Devi inserire un url")
@@ -33,6 +37,7 @@ public class Photo {
 	private boolean visible;
 	
 	@ManyToMany
+	@Size(min = 1, message = "Devi selezionare almeno una categoria")
 	private List<Category> categories;
 
 	public Photo() {};
