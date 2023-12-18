@@ -1,14 +1,20 @@
 <template>
-
-    <ul>
-        <li 
-            class="list-unstyled"
+    <div class="container">
+        <div class="row">
+            <div
+            class="list-unstyled col-4"
             v-for="photo in photos" 
-            :key="photo.id"
-        >
-            {{ photo.name }}
-        </li>
-    </ul>
+            :key="photo.id">
+                <div class="card">
+                <img :src="photo.url" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ photo.name }}</h5>
+                    <p class="card-text">{{ photo.description }}</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </template>
 
