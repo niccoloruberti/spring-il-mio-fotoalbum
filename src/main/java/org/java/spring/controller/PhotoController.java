@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.validation.Valid;
 
@@ -27,11 +28,14 @@ public class PhotoController {
 	private CategoryService categoryService;
 	
 	@GetMapping
-	public String getPhotos(Model model) {
+	public String getPhotos(Model model, @RequestParam(required = false) String ricercaStr) {
 		
-		List<Photo> photos = photoService.findAll();
+		List<Photo> photos = 
+				ricercaStr == null ? photoService.findAll() : photoService.findByName(ricercaStr);
 		
 		model.addAttribute("photos", photos);
+		
+		model.addAttribute("ricercaStr", ricercaStr);
 		
 		return "photos";
 	}

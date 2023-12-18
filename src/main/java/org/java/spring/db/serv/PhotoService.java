@@ -19,9 +19,6 @@ public class PhotoService {
     public Photo findById(int id) {
         return photoRepository.findById(id).get();
     }
-    public List<Photo> findByName(String name){
-        return photoRepository.findByNameContainingIgnoreCase(name);
-    }
     public void save(Photo photo) {
         photoRepository.save(photo);
     }
@@ -33,4 +30,8 @@ public class PhotoService {
         
         photoRepository.deleteById(id);
     }
+	public List<Photo> findByName(String ricercaStr) {
+		
+		return photoRepository.findByNameContaining(ricercaStr);
+	}
 }
