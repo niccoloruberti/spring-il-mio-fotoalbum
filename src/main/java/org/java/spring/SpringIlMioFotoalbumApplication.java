@@ -1,5 +1,10 @@
 package org.java.spring;
 
+import org.java.spring.auth.conf.AuthConf;
+import org.java.spring.auth.db.pojo.Role;
+import org.java.spring.auth.db.pojo.User;
+import org.java.spring.auth.db.serv.RoleService;
+import org.java.spring.auth.db.serv.UserService;
 import org.java.spring.db.pojo.Category;
 import org.java.spring.db.pojo.Photo;
 import org.java.spring.db.serv.CategoryService;
@@ -17,6 +22,12 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringIlMioFotoalbumApplication.class, args);
@@ -59,7 +70,11 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner{
 		photoService.save(ph3);
 		photoService.save(ph4);
 		
-
+		Role r1 = new Role("ADMIN");
+		roleService.save(r1);
+		
+		String pws1 = AuthConf.passwordEncoder().encode("password-1");
+		userService.save(new User("utente-1", pws1, r1));
 	}
 
 }
