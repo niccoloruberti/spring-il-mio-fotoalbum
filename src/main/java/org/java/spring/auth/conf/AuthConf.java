@@ -16,8 +16,11 @@ public class AuthConf {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         
-        http.authorizeHttpRequests()
-            .requestMatchers("/**").hasAuthority("ADMIN")
+        http.csrf().disable()
+        	.cors().disable()
+        	.authorizeHttpRequests()
+        	.requestMatchers("/api/**").permitAll()
+        	.requestMatchers("/**").hasAuthority("ADMIN")
             .and().formLogin()
             .and().logout()
         ;

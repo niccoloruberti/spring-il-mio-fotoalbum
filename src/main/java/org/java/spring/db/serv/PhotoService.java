@@ -34,4 +34,7 @@ public class PhotoService {
 		
 		return photoRepository.findByNameContaining(ricercaStr);
 	}
+	public List<Photo> findByVisibleTrue(){
+		return photoRepository.findByVisibleTrue();
+	}
 }

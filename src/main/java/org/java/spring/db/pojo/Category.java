@@ -5,6 +5,8 @@ package org.java.spring.db.pojo;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,6 +25,7 @@ public class Category {
     private String name;
     
     @ManyToMany(mappedBy = "categories")
+    @JsonIgnore
     private List<Photo> photos;
     
 	public Category() { }
@@ -43,6 +46,7 @@ public class Category {
         this.name = name;
     }
     
+    @JsonIgnore
     public List<Photo> getPhotos() {
 		return photos;
 	}
