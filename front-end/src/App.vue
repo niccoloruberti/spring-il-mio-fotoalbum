@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div>
+    <div
+    v-if="!isContacting">
       <input
         type="text"
         v-model="searchStr"
@@ -11,8 +12,30 @@
 
     <!-- photo index -->
     <PhotoIndex
+    v-if="!isContacting"
     :photos="(isFiltered ? filteredPhotos : photos)"
     />
+
+    <!-- contattaci -->
+    <a
+    v-if="!isContacting"
+    @click="isContacting = true"
+     class="mt-5 btn btn-outline-success">Contattaci</a>
+
+    <!-- form -->
+    <form
+    @submit.prevent="sendMessage"
+    v-if="isContacting">
+      <label class="form-label" for="name">Nome</label>
+      <input class="form-control" type="text" name="name" id="name" v-model="contact.name">
+      <label class="form-label" for="email">Email</label>
+      <input class="form-control" type="email" id="email" name="email" v-model="contact.email">
+      <label class="form-label" for="message">Messaggio</label>
+      <input class="form-control" type="text" id="message" name="message" v-model="contact.message">
+      <button
+      class="mt-3 btn btn-success"
+      type="submit">Invia</button>
+    </form>
   </div>
 
 </template>
@@ -32,6 +55,12 @@
   let filteredPhotos = ref(null);
   let searchStr = ref(null);
   let isFiltered = ref(false);
+  let isContacting = ref(false);
+  const contact = ref({
+    name: '',
+    email: '',
+    message: ''
+  });
 
   //functions
 
@@ -41,6 +70,12 @@
 
     console.log(data);
   };
+
+  const sendMessage = async () => {
+    const response = await axios.post('http://localhost:8080/api/contact', contact.value);
+    console.log(response);
+    isContacting.value = false;
+};
 
   const search = () => {
     if(searchStr.value !== null) {
