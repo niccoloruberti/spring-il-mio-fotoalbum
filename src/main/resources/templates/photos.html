@@ -6,33 +6,45 @@
     <link th:replace="fragments::bootstrap"/>
 </head>
 <body>
+	<div th:replace="fragments :: header"></div>
     <div class="container">
         <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-8 d-flex flex-column align-items-center justify-content-center">
-				<div class="row">
+				<div class="col-6">
 					<!-- Ricerca -->
-					<form class="d-flex justify-content-center mb-5">
-						<input class="form-control w-25 me-2" id="search" type="text" name="ricercaStr" th:value="${ricercaStr}">
+					<form class="d-flex mt-5" role="search">
+						<input class="form-control me-2" id="search" type="search" name="ricercaStr" th:value="${ricercaStr}">
 						<input class="btn btn-outline-success" type="submit" value="Cerca" > 		
 					</form>			
 				</div>
+				<!-- elenco foto -->
                 <h1 class="w-100 text-center mt-5">Le tue foto: </h1>
-                <ul class="w-100 text-center">
-                    <li th:each="photo : ${photos}"
-                    	th:object="${photo}"
-                    	class="list-unstyled">
-                        <a class="text-decoration-none text-dark" th:href="@{/photos/{id} (id=${photo.id})}">[[*{name}]]</a>
-                        <a class="btn btn-warning" th:href="@{/photos/edit/{id} (id=${photo.id})}">Modifica</a>
-                        <form
-                        	method="POST"
-                        	th:action="@{/photos/delete/{id} (id=${photo.id})}">
-							<button type="submit" class="btn btn-danger">Elimina</button>
-						</form>
-                    </li>
-                </ul>
-                <a href="/photos/create" class="btn btn-success">Aggiungi foto</a>
-                <a href="/categories" class="btn btn-success">Visualizza categorie</a>
-            </div>
+                    <table class="table">
+					    <thead>
+					      <tr>
+					        <th scope="col">Nome</th>
+					        <th scope="col" class="w-25">Modifica</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <tr th:each="photo : ${photos}" th:object="${photo}">
+					        <td>
+					          <a class="text-decoration-none text-dark" th:href="@{/photos/{id} (id=${photo.id})}">
+					            [[*{name}]]
+					          </a>
+					        </td>
+					        <td>
+					          <div class="btn-group" role="group">
+					            <a class="btn btn-warning me-3" th:href="@{/photos/edit/{id} (id=${photo.id})}">Modifica</a>
+					            <form method="POST" th:action="@{/photos/delete/{id} (id=${photo.id})}">
+					              <button type="submit" class="btn btn-danger">Elimina</button>
+					            </form>
+					          </div>
+					        </td>
+					      </tr>
+					    </tbody>
+					  </table>
+                <a href="/photos/create" class="btn btn-success w-25 me-2">Aggiungi foto</a>
+                <a href="/categories" class="btn btn-success w-25">Visualizza categorie</a>
         </div>
     </div>
 </body>

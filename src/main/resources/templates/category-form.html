@@ -6,13 +6,22 @@
 <link th:replace="fragments :: bootstrap" />
 </head>
 <body>
-	<form
-	method="POST"
-	th:object="${category}">
-		<label for="name">Nome</label>
-		<input id="name" name="name" type="text" th:field="*{name}">
-		<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-		<button type="submit">Salva</button>
-	</form>
+	<div th:replace="fragments :: header"></div>
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-8 offset-2 d-flex flex-column align-items-center">
+				<h3 class="mb-3">Inserisci il nome di una categoria</h3>
+				<form
+				method="POST"
+				th:object="${category}">
+					<label for="name" class="form-label">Nome</label>
+					<input id="name" name="name" type="text" th:field="*{name}" class="form-control">
+					<!-- <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" /> -->
+					<button type="submit" class="btn btn-success mt-2">Salva</button>
+				</form>				
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

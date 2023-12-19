@@ -10,18 +10,21 @@
 	<div th:replace="fragments :: header"></div>
 	<div class="container">
 		<div class="row">
-			<div class="col-8 offset-2">
-				<ul>
-					<li th:each="category : ${categories}">[[${category.name}]]
+			<div class="col-8 mt-5 offset-2 d-flex justify-content-center flex-column align-items-center">
+				<h2>Categorie:</h2>
+				<ul class="list-unstyled">
+					<li th:each="category : ${categories}"
+						class="my-3 flex-column align-items-center">
                     <form
-                    	class="inline-block"
+                    	class="d-inline"
                     	method="POST"
                     	th:action="@{/categories/delete/{id} (id=${category.id})}">
 						<button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-					</form>				
+					</form>	
+					[[${category.name}]]			
 					</li>
 				</ul>
-				<a class="btn btn-success" href="/categories/create">Aggiungi categoria</a>
+				<a class="btn btn-success w-50" href="/categories/create">Aggiungi categoria</a>
 			</div>
 		</div>
 	</div>

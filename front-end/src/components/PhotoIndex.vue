@@ -2,10 +2,10 @@
     <div class="container">
         <div class="row">
             <div
-            class="list-unstyled col-4"
+            class="list-unstyled col-4 my-3"
             v-for="photo in photos" 
             :key="photo.id">
-                <div class="card">
+                <div class="card h-100">
                 <img :src="photo.url" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ photo.name }}</h5>

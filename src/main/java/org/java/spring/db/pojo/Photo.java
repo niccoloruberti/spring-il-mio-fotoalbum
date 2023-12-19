@@ -25,11 +25,11 @@ public class Photo {
 	
 	
 	@NotEmpty(message = "Devi inserire un nome")
-	@Length(min = 3, max = 30, message = "Il nome deve essere lungo almeno 3 caratteri e non più lungo di 30")
+	@Length(min = 3, max = 50, message = "Il nome deve essere lungo almeno 3 caratteri e non più lungo di 50")
 	private String name;
 	
 	@Column(columnDefinition = "TEXT")
-	@Length(max = 400, message = "La descrizione può essere lunga al massimo 200 caratteri")
+	@Length(max = 600, message = "La descrizione può essere lunga al massimo 600 caratteri")
 	private String description;
 	
 	@NotEmpty(message = "Devi inserire un url")

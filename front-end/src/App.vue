@@ -1,13 +1,25 @@
 <template>
   <div>
+    <!--header-->
+    <nav class="w-100 fixed-top bg-dark">
+        <span class="mb-0 h1 text-white"
+        @click="isContacting = false"
+        >Album Fotografico</span>
+    </nav>
+
     <div
     v-if="!isContacting">
-      <input
-        type="text"
-        v-model="searchStr"
-        placeholder="Cerca una foto..."
-      />
-      <button @click="search">Cerca</button>
+      <div class="d-flex col-6 offset-3 my-5" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          v-model="searchStr"
+          placeholder="Cerca una foto..."
+        />
+        <button 
+        class="btn btn-outline-success"
+        @click="search">Cerca</button>
+      </div>
     </div>
 
     <!-- photo index -->
@@ -81,6 +93,7 @@
     if(searchStr.value !== null) {
       filteredPhotos.value = photos.value.filter((photo) => photo.name.toLowerCase().includes(searchStr.value.toLowerCase()));
       isFiltered.value = true;
+      console.log(filteredPhotos)
     } else {
       getPhotos();
     }
